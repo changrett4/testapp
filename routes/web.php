@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -10,7 +11,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['namespace'=>'Site'],function (){
+    Route::get('/','HomeController');
+    Route::get('times','TeamsController@index');
+    Route::get('times/{slug}','TeamsController@show');
+    Route::get('blog','BlogController');
+    Route::view('sobre','site.about.index');
+    Route::get('contato','ContactController@index');
+    Route::post('contato','ContactController@form');
 });
+
+
